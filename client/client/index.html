@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatterbox</title>
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- dependencies -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="../node_modules/sanitize-html/dist/sanitize-html.js""></script>
+    <script>
+      // YOU DO NOT NEED TO EDIT THIS CODE
+      if (!/(&|\?)username=/.test(window.location.search)) {
+        var newSearch = window.location.search;
+        if (newSearch !== '' & newSearch !== '?') {
+          newSearch += '&';
+        }
+        newSearch += 'username=' + (prompt('What is your name?') || 'anonymous');
+        window.location.search = newSearch;
+      }
+    </script>
+    <!-- your scripts -->
+    <script src="scripts/app.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <h1>chatterbox</h1>
+      <!-- Your HTML goes here! -->
+      <div>
+        <h2>Room:</h2>
+        <select id="roomSelector" onchange="changeRoom()">
+          <option value="all">All Messages</option>
+        </select>
+        <h2>Create room</h2>
+        <input id="createRoom" type="text">
+        <button id="roombutton" type="button">Submit</button>
+      </div>
+      <h2>Set Your Name:</h2>
+      <form id="setUsername">
+        <input id="nameBox" type="text" name="username" value="Anonymous hacker"><br>
+        <button id="namesubmit" type="button">Submit</button>
+      </form>
+      <h2>Enter Message:</h2>
+      <form id="enterMessage">
+        <input id="messageBox" type="text" name="message"><br>
+        <button id="submit" type="button">Submit</button>
+    </form>
+    <div id="chats"></div>
+  </body>
+</html>

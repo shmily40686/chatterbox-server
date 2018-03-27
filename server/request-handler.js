@@ -1,5 +1,4 @@
-var bodyParser = require('body-parser');
-var sampleData = {results: []};
+var sampleData = {results: [{roomname: 'room', text: 'message', username: 'user'}]};
 
 
 module.exports.requestHandler = function(request, response) {
