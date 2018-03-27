@@ -1,15 +1,18 @@
-var sampleData = {results: [{roomname: 'room', text: 'message', username: 'user'}]};
-
+var sampleData = {results: []};
 
 module.exports.requestHandler = function(request, response) {
 
   // The outgoing status.
-  var statusCode = 200;
-  var headers = defaultCorsHeaders;
+  var headers = {
+  'access-control-allow-origin': '*',
+  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'access-control-allow-headers': 'content-type, accept',
+  'access-control-max-age': 10 // Seconds.
+  };;
+
   headers['Content-Type'] = 'text/plain';
   
   if (request.method === 'POST' && request.url === '/classes/messages') {
-    statusCode = 201;
     var data = '';
     request.on('data', function(chunk) {
       data += chunk;
@@ -29,11 +32,3 @@ module.exports.requestHandler = function(request, response) {
     response.end('404');
   }
 };
-
-var defaultCorsHeaders = {
-  'access-control-allow-origin': '*',
-  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'access-control-allow-headers': 'content-type, accept',
-  'access-control-max-age': 10 // Seconds.
-};
-
